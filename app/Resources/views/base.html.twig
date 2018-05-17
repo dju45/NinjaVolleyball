@@ -9,10 +9,11 @@
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
         <link href="https://fonts.googleapis.com/css?family=Catamaran:400,600" rel="stylesheet">
     </head>
-    <body>
+    <body class="container-fluid">
     {% include 'default/include/navbar.html.twig' %}
         {% block body %}{% endblock %}
-    <script language="JavaScript" src="http://scripts.hashemian.com/js/countdown.js"></script>
+        {% include 'default/include/footer.html.twig' %}
         {% block javascripts %}{% endblock %}
+    <script language="JavaScript" src="http://scripts.hashemian.com/js/countdown.js"></script>
     </body>
 </html>
