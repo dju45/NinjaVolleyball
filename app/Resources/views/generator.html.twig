@@ -5,16 +5,14 @@
 
 
    <div>
-       {% for team in teams %}
-
+       {% for game in games %}
+            {{ dump(game) }}
        {% endfor %}
 
        <p>Nombre de teams : {{ teams|length }} </p>
 
-       {% for game in games %}
-       {% endfor %}
+        {{ dump(tournament) }}
 
        <p>Nombre de match à jour au premier tour : {{ games|length }} </p>
-       <p>{{ dump(tournament) }}</p>
    </div>
 {% endblock %}

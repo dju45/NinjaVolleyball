@@ -30,6 +30,11 @@ class GeneratorController extends Controller
         // on génère le tableau de tournoi
         $arrayTournament = $this->generateArrayTournament($teams);
 
+        // on génère les game en bdd
+         $this->generateGame($arrayTournament);
+
+
+
         // calcul du nombre de games
         $games = $em->getRepository(Game::class)->findAll();
 
@@ -97,6 +102,43 @@ class GeneratorController extends Controller
 
 
         return $tab;
+    }
+
+    private function generateGame($teams){
+        $em = $this->getDoctrine()->getManager();
+
+        $teamsCount = count($teams);
+        $size = $this->calcSizeForArrayTournament($teamsCount);
+
+        $col = $this->countCol($size);
+        $lineMax = $col * 2;
+
+        $posLine=1;
+        $posCol=$col;
+        for ($i=0 ; $i < $size ; $i+=2){
+
+            $game = new Game();
+            $game->setTeam1($teams[$i]);
+            if($teams[$i+1] != 'white'){
+                $game->setTeam2($teams[$i+1]);
+
+            }
+
+            $game->setPosLine($posLine);
+            $posLine++;
+            $game->setPosCol($posCol);
+
+            $em->persist($game);
+            $em->flush();
+        }
+
+        return true;
+    }
+
+    private function countCol(int $size) :int
+    {
+        return log($size)/ log(2);
+
     }
 
 }
