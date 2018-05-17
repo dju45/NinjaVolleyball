@@ -1,1 +1,42 @@
-@import "../../node_modules/bootstrap/scss/bootstrap";
+@import "~bootstrap/scss/bootstrap";
+
+$bleu-marine: #202B54;
+$bleu-vert: #3DBBAA;
+$rose: #EC4966;
+$jaune: #FED345;
+$orange: #F59333;
+$vert: #8DC557;
+$violet: #793990;
+$bleu-clair: #3393CE;
+$blanc: #FFFFFF;
+
+$catamaran: 'Catamaran', sans-serif;
+
+body {
+  font-family: $catamaran;
+}
+
+footer {
+  background-color: $bleu-marine;
+  text-align: center;
+  min-height: 20vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 30px 50px;
+  color: $blanc;
+  img {
+    margin-left: 10px;
+    margin-right: 10px;
+    border-radius: 50%;
+    &:hover {
+      box-shadow: 0px 0px 10px #130E0A;
+    }
+  }
+}
+
+.align-center-x {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
