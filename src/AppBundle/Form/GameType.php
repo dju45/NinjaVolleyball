@@ -13,7 +13,7 @@ class GameType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('team1')->add('team2')->add('score1')->add('score2')->add('winner')->add('posLine')->add('posCol');
+        $builder->add('score1')->add('score2')->add('winner')->add('posLine')->add('posCol')->add('team1')->add('team2');
     }/**
      * {@inheritdoc}
      */
