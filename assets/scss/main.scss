@@ -1,5 +1,33 @@
 @import "~bootstrap/scss/bootstrap";
 
+$bleu-marine: #202B54;
+$bleu-vert: #3DBBAA;
+$rose: #EC4966;
+$jaune: #FED345;
+$orange: #F59333;
+$vert: #8DC557;
+$violet: #793990;
+$bleu-clair: #3393CE;
+$catamaran: 'Catamaran', sans-serif;
+.container-navbar {
+  .navbar-brand {
+    color: $bleu-marine;
+    font-family: $catamaran;
+    font-weight: bold;
+    font-size: 2rem;
+  }
+
+  .nav-link {
+    color: $bleu-marine;
+    font-family: $catamaran;
+    font-weight: bold;
+    font-size: 1.5rem;
+    &:hover {
+      color: $jaune;
+    }
+  }
+}
+
 table{
   @extend  .table, .table-bordered;
   margin:auto;
