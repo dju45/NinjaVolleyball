@@ -9,10 +9,10 @@
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
         <link href="https://fonts.googleapis.com/css?family=Catamaran:400,600" rel="stylesheet">
     </head>
-    <body>
-    {% include 'default/navbar.html.twig' %}
+    <body class="container-fluid">
+    {% include 'default/include/navbar.html.twig' %}
         {% block body %}{% endblock %}
-        {% include 'include/footer.html.twig' %}
+        {% include 'default/include/footer.html.twig' %}
         {% block javascripts %}{% endblock %}
     </body>
 </html>
