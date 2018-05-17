@@ -28,3 +28,7 @@ $catamaran: 'Catamaran', sans-serif;
   }
 }
 
+table{
+  @extend  .table, .table-bordered;
+  margin:auto;
+}
