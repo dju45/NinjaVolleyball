@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Games list</h1>
+
+
+   <div>
+       {% for team in teams %}
+
+       {% endfor %}
+
+       <p>Nombre de teams : {{ teams|length }} </p>
+
+       {% for game in games %}
+       {% endfor %}
+
+       <p>Nombre de match à jour au premier tour : {{ games|length }} </p>
+       <p>{{ dump(tournament) }}</p>
+   </div>
+{% endblock %}
