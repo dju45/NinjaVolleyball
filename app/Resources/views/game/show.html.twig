@@ -10,14 +10,6 @@
                 <td>{{ game.id }}</td>
             </tr>
             <tr>
-                <th>Team1</th>
-                <td>{{ game.team1 }}</td>
-            </tr>
-            <tr>
-                <th>Team2</th>
-                <td>{{ game.team2 }}</td>
-            </tr>
-            <tr>
                 <th>Score1</th>
                 <td>{{ game.score1 }}</td>
             </tr>
@@ -42,10 +34,10 @@
 
     <ul>
         <li>
-            <a href="{{ path('game_index') }}">Back to the list</a>
+            <a href="{{ path('admin_game_index') }}">Back to the list</a>
         </li>
         <li>
-            <a href="{{ path('game_edit', { 'id': game.id }) }}">Edit</a>
+            <a href="{{ path('admin_game_edit', { 'id': game.id }) }}">Edit</a>
         </li>
         <li>
             {{ form_start(delete_form) }}
