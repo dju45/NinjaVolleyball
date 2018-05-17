@@ -35,8 +35,24 @@ footer {
   }
 }
 
-.align-center-x {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
+.container-navbar {
+  .navbar-brand {
+    color: $bleu-marine;
+    font-weight: bold;
+    font-size: 2rem;
+  }
+}
+
+ .nav-link {
+    color: $bleu-marine;
+    font-weight: bold;
+    font-size: 1.5rem;
+    &:hover {
+      color: $jaune;
+    }
+  }
+
+table {
+  @extend  .table, .table-bordered;
+  margin:auto;
 }
