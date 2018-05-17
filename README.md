@@ -1,4 +1,4 @@
-# Projet I/O - Exell Finance
+# Hackathon - 2 Wild Code School
 *Wild Code School Orléans - Session February 2018*
 
 # Description
