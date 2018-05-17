@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<h1>{{ constant('AppBundle\\Entity\\Tournament::TOURNAMENT') }}</h1>
+    {% for tournament in tournaments %}
+        {% if(tournament.size) == 0 %}
+             <input type="submit" value="Generate">
+        {% endif %}
+        {% for game in games %}
+        <div>
+            <p>{{ game.team }}</p>
+        </div>
+        {% endfor %}
+    {% endfor %}
+{% endblock %}
