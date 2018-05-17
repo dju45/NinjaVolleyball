@@ -31,11 +31,16 @@ class GeneratorController extends Controller
         $arrayTournament = $this->generateArrayTournament($teams);
 
         // on génère les game en bdd
-        $this->generateGame($arrayTournament);
-
+        $isWhite = $this->generateGame($arrayTournament);
 
         // calcul du nombre de games
         $games = $em->getRepository(Game::class)->findAll();
+
+        // s'il y a des blanc, on rempli la 2eme col
+        if($isWhite){
+            $this->generateSecondCol($games);
+        }
+
 
 
         return $this->render('generator.html.twig', array(
@@ -106,6 +111,7 @@ class GeneratorController extends Controller
 
     private function generateGame($teams)
     {
+        $isWhite = false;
         $em = $this->getDoctrine()->getManager();
 
         $teamsCount = count($teams);
@@ -118,17 +124,18 @@ class GeneratorController extends Controller
         $d = 1;
 
         for ($posCol = $col; $posCol >= 1; $posCol--) {
-            for ($line = 0; $line < ($size / $d) ; $line += 2) {
+            for ($line = 0; $line < ($size / $d); $line += 2) {
 
                 $game = new Game();
                 // si 1ere col, on ajoute team1 et team 2
                 if ($posCol == $col) {
 
-
                     $game->setTeam1($teams[$line]);
 
                     if ($teams[$line + 1] != 'white') {
                         $game->setTeam2($teams[$line + 1]);
+                    } else {
+                        $isWhite = true;
                     }
                 }
                 // si autre col on ajoute pas les team
@@ -141,10 +148,10 @@ class GeneratorController extends Controller
                 $posLine++;
 
             }
-            $d=$d*2;
+            $d = $d * 2;
             $posLine = 1;
         }
-        return true;
+        return $isWhite;
     }
 
     private function countCol(int $size): int
