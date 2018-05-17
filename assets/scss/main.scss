@@ -9,6 +9,7 @@ $vert: #8DC557;
 $violet: #793990;
 $bleu-clair: #3393CE;
 $blanc: #FFFFFF;
+$gris: #DDDDDD;
 
 $catamaran: 'Catamaran', sans-serif;
 body {
@@ -97,8 +98,23 @@ table{
 }
 
 #partenaires {
+  color: $bleu-marine;
   margin-top: 80px;
   margin-bottom: 80px;
+  .row {
+    h2 {
+      margin-left: auto;
+      margin-right: auto;
+      margin-bottom: 20px;
+      border-left: 3px solid $orange;
+      padding-left: 5px;
+    }
+  }
+}
+
+#mascot {
+  color: $bleu-marine;
+  background-color: $gris;
   .row {
     h2 {
       margin-left: auto;
