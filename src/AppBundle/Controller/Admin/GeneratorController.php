@@ -31,8 +31,7 @@ class GeneratorController extends Controller
         $arrayTournament = $this->generateArrayTournament($teams);
 
         // on génère les game en bdd
-         $this->generateGame($arrayTournament);
-
+        $this->generateGame($arrayTournament);
 
 
         // calcul du nombre de games
@@ -72,7 +71,8 @@ class GeneratorController extends Controller
     }
 
 
-    private function generateArrayTournament(array $teams){
+    private function generateArrayTournament(array $teams)
+    {
         $teamsCount = count($teams);
         $size = $this->calcSizeForArrayTournament($teamsCount);
 
@@ -80,9 +80,9 @@ class GeneratorController extends Controller
         $whiteCount = $size - $teamsCount;
         $teamShuffle = $teams;
         shuffle($teamShuffle);
-        $tab = range(1,$size-1);
+        $tab = range(1, $size - 1);
 
-        if($whiteCount == 0) {// on place les blancs dans le tableau
+        if ($whiteCount == 0) {// on place les blancs dans le tableau
             return $teamShuffle;
         }
 
@@ -91,12 +91,12 @@ class GeneratorController extends Controller
             $tab[$size - $n - 1] = 'white';
             $n += 2;
         }
-        $i=0;
-        foreach ($teamShuffle as $key => $team){
-            if( $tab[$key+$i] == 'white') {
+        $i = 0;
+        foreach ($teamShuffle as $key => $team) {
+            if ($tab[$key + $i] == 'white') {
                 $i++;
             }
-            $tab[$key+$i]=$team;
+            $tab[$key + $i] = $team;
 
         }
 
@@ -104,7 +104,8 @@ class GeneratorController extends Controller
         return $tab;
     }
 
-    private function generateGame($teams){
+    private function generateGame($teams)
+    {
         $em = $this->getDoctrine()->getManager();
 
         $teamsCount = count($teams);
@@ -113,31 +114,42 @@ class GeneratorController extends Controller
         $col = $this->countCol($size);
         $lineMax = $col * 2;
 
-        $posLine=1;
-        $posCol=$col;
-        for ($i=0 ; $i < $size ; $i+=2){
+        $posLine = 1;
+        $d = 1;
 
-            $game = new Game();
-            $game->setTeam1($teams[$i]);
-            if($teams[$i+1] != 'white'){
-                $game->setTeam2($teams[$i+1]);
+        for ($posCol = $col; $posCol >= 1; $posCol--) {
+            for ($line = 0; $line < ($size / $d) ; $line += 2) {
+
+                $game = new Game();
+                // si 1ere col, on ajoute team1 et team 2
+                if ($posCol == $col) {
+
+
+                    $game->setTeam1($teams[$line]);
+
+                    if ($teams[$line + 1] != 'white') {
+                        $game->setTeam2($teams[$line + 1]);
+                    }
+                }
+                // si autre col on ajoute pas les team
+                $game->setPosLine($posLine);
+                $game->setPosCol($posCol);
+
+                $em->persist($game);
+                $em->flush();
+
+                $posLine++;
 
             }
-
-            $game->setPosLine($posLine);
-            $posLine++;
-            $game->setPosCol($posCol);
-
-            $em->persist($game);
-            $em->flush();
+            $d=$d*2;
+            $posLine = 1;
         }
-
         return true;
     }
 
-    private function countCol(int $size) :int
+    private function countCol(int $size): int
     {
-        return log($size)/ log(2);
+        return log($size) / log(2);
 
     }
 
