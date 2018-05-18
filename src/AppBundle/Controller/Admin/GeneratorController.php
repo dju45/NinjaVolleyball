@@ -40,11 +40,16 @@ class GeneratorController extends Controller
         $games = $em->getRepository(Game::class)->findAll();
 
         // s'il y a des blanc, on rempli la 2eme col
-        /*if($isWhite){
+        if($isWhite){
             $this->generateSecondCol($games);
         }
-*/
-        return $this->redirect('/admin/tournament');
+        $games = $em->getRepository(Game::class)->findAll();
+
+
+        /*return $this->redirect('/admin/tournament');*/
+        return $this->render('/generator.html.twig', array(
+            'games' => $games,
+        ));
     }
 
     /**
@@ -156,4 +161,34 @@ class GeneratorController extends Controller
 
     }
 
+    private function updateGames($games,$key)
+    {
+        if($games[$key]->getPosLine()%2!=0){
+            // update de la game.team1 where posCOl-1 and posLine = (calc+1)/2
+            $posLineCible = ceil($games[$key]->getPosLine() / 2 );
+            $posColCible = $games[$key]->getPosCol() - 1;
+            $em = $this->getDoctrine()->getManager();
+            $game = $em->getRepository(Game::class)->findOneBy(
+                ['posCol' => $posColCible , 'posLine'=> $posLineCible]
+            );
+
+            // and update de la gameteam2 where posCOl and posLine = (calc)/2
+            $game->setTeam1($games[$key]->getTeam1());
+            $game->setTeam2($games[$key+1]->getTeam1());
+            $em->persist($game);
+            $em->flush();
+                }
+    }
+
+    private function generateSecondCol($games)
+    {
+       $tournamentController = new TournamentController();
+       $firstCol = $tournamentController->seekFirstCol($games);
+
+        foreach ($games as $key => $game){
+            if (empty($game->getTeam2()) && $game->getPosCol() == $firstCol){
+                $this->updateGames($games,$key);
+            }
+        }
+    }
 }

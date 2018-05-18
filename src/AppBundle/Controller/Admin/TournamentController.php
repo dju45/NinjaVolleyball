@@ -25,7 +25,7 @@ class TournamentController extends Controller
         $games = $em->getRepository( 'AppBundle:Game')->findAll();
         $firstCol = $this->seekFirstCol($games);
 
-        // génération du tableau architecturé
+
 
         return $this->render('tournament/index.html.twig', array(
             'games' => $games,
@@ -37,7 +37,7 @@ class TournamentController extends Controller
      * @param $games
      * @return int
      */
-    private function seekFirstCol($games):int
+    public function seekFirstCol($games):int
     {
         $colMax = 0;
         foreach ($games as $game){
