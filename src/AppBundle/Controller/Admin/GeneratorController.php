@@ -11,17 +11,20 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
  * Class GeneratorController
  * @package AppBundle\Controller
  *
- * @Route("admin/tournament/generator/")
+ * @Route("admin/tournament/generator")
  */
 class GeneratorController extends Controller
 {
     /**
      * @Route("/",name="admin_generator")
      */
-    public function sizeAction()
+    public function indexAction()
     {
-
         $em = $this->getDoctrine()->getManager();
+        if( count($games = $em->getRepository(Game::class)->findAll()) > 0){
+            return $this->redirect('/admin/tournament');
+        }
+
 
         $teams = $em->getRepository(Team::class)->findAll();
         // nombre d'équipe
@@ -37,18 +40,11 @@ class GeneratorController extends Controller
         $games = $em->getRepository(Game::class)->findAll();
 
         // s'il y a des blanc, on rempli la 2eme col
-        if($isWhite){
+        /*if($isWhite){
             $this->generateSecondCol($games);
         }
-
-
-
-        return $this->render('generator.html.twig', array(
-            'games' => $games,
-            'teams' => $teams,
-            'tournament' => $arrayTournament,
-
-        ));
+*/
+        return $this->redirect('/admin/tournament');
     }
 
     /**

@@ -1,14 +1,68 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-<h1>{{ constant('AppBundle\\Entity\\Tournament::TOURNAMENT') }}</h1>
-    {% for tournament in tournaments %}
-        {% if(tournament.size) == 0 %}
-             <input type="submit" value="Generate">
-        {% endif %}
-        {% for game in games %}
-        <div>
-            <p>{{ game.team }}</p>
-        </div>
-        {% endfor %}
-    {% endfor %}
+    <h1>{{ constant('AppBundle\\Entity\\Tournament::TOURNAMENT') }}</h1>
+
+    {% if games is empty %}
+        <a href="{{ path('admin_generator') }}">Générer le tournoi</a>
+
+    {% else %}
+        {{ games|length }}
+        {{ firstCol }}
+    {% endif %}
+    <div id="tournament">
+        <table>
+            <tr>
+                {% for i in firstCol..1 %}
+                    <td>
+                        <div class="content">
+                            {% for game in games if game.posCol == i %}
+                                <div class="game">
+                                    <div class="team">
+
+                                            <table class="teamTab">
+                                                <tr>
+                                                    <td class="teamName">
+                                                        {% if game.team1 is not empty %}
+                                                        {{ game.team1.name }}
+                                                        {% endif %}
+                                                    </td>
+                                                    <td class="score">
+                                                        {% if game.team1 is not empty %}
+                                                        s{{ game.score1 }}
+                                                        {% endif %}
+
+                                                    </td>
+                                                </tr>
+                                            </table>
+
+
+                                    </div>
+                                    <div class="team">
+
+                                            <table class="teamTab">
+                                                <tr>
+
+                                                    <td class="teamName">
+                                                        {% if game.team2 is not empty %}
+                                                        {{ game.team2.name }}
+                                                        {% endif %}
+                                                    </td>
+                                                    <td class="score">
+                                                        {% if game.team2 is not empty %}
+                                                        s:{{ game.score2 }}
+                                                        {% endif %}
+                                                    </td>
+                                                </tr>
+                                            </table>
+
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </td>
+                {% endfor %}
+            </tr>
+        </table>
+    </div>
+
 {% endblock %}
