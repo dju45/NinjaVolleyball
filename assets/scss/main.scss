@@ -48,18 +48,18 @@ footer {
   }
 }
 
- .nav-link {
-    color: $bleu-marine;
-    font-weight: bold;
-    font-size: 1.5rem;
-    &:hover {
-      color: $jaune;
-    }
+.nav-link {
+  color: $bleu-marine;
+  font-weight: bold;
+  font-size: 1.5rem;
+  &:hover {
+    color: $jaune;
   }
+}
 
 table {
-  @extend  .table, .table-bordered;
-  margin:auto;
+  @extend .table, .table-bordered;
+  margin: auto;
 }
 
 .align-center-x {
@@ -80,9 +80,9 @@ table {
   font-size: 1.8rem;
 }
 
-table{
-  @extend  .table, .table-bordered;
-  margin:auto;
+table {
+  @extend .table, .table-bordered;
+  margin: auto;
 }
 
 .container-header {
@@ -90,6 +90,7 @@ table{
   background-position: center;
   background-size: cover;
 }
+
 .container-header h2 {
   color: $violet;
   font-family: $catamaran;
@@ -124,4 +125,74 @@ table{
       padding-left: 5px;
     }
   }
+}
+
+$heightTournament : 800px;
+$widthGame : 350px;
+$heightCell : 80px;
+
+#tournament {
+  input[type="number"] {
+    width: 60px;
+  }
+
+  table{
+    @extend .table,.table-borderless;
+  }
+
+   td{
+     vertical-align: middle;
+     text-align:center;
+   }
+
+  .content-game{
+    width:250px;
+    display:inline-block;
+
+  }
+
+  .submit{
+    width:75px;
+    display:inline-block;
+  }
+  .content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+   /* align-items: center;*/
+    min-height:$heightTournament;
+  }
+  .game {
+    border:1px solid black;
+    border-radius: 8px;
+    margin:auto auto;
+    min-width:$widthGame;
+
+
+    .team{
+      border:1px solid black;
+
+      table.teamTab{
+        margin:0;
+        padding:0;
+        tr{
+          height:$heightCell;
+        }
+        .td{
+        }
+      }
+      .teamName{
+        border:1px solid black;
+        vertical-align: middle;
+
+      }
+      .score{
+        width:20%;
+        border:1px solid black;
+        vertical-align: middle;
+
+      }
+    }
+  }
+
 }

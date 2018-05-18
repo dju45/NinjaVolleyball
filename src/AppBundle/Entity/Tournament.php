@@ -12,6 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Tournament
 {
+    const TOURNAMENT = 'World cup 2018';
     /**
      * @var int
      *
