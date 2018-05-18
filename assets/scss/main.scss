@@ -132,6 +132,10 @@ $widthGame : 350px;
 $heightCell : 80px;
 
 #tournament {
+  input[type="number"] {
+    width: 60px;
+  }
+
   table{
     @extend .table,.table-borderless;
   }
@@ -141,6 +145,16 @@ $heightCell : 80px;
      text-align:center;
    }
 
+  .content-game{
+    width:250px;
+    display:inline-block;
+
+  }
+
+  .submit{
+    width:75px;
+    display:inline-block;
+  }
   .content{
     display: flex;
     flex-direction: column;
