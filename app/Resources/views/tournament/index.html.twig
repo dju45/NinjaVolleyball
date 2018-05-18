@@ -1,0 +1,87 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <h1>{{ constant('AppBundle\\Entity\\Tournament::TOURNAMENT') }}</h1>
+
+    {% if games is empty %}
+        <a href="{{ path('admin_generator') }}">Générer le tournoi</a>
+
+    {% else %}
+
+    {% endif %}
+    <div id="tournament">
+        <table>
+            <tr>
+                {% for i in firstCol..1 %}
+                    <td>
+                        <div class="content">
+                            {% for game in games if game.posCol == i %}
+                                <div class="game">
+                                    <form method="post" action="{{ path('admin_update_tournament') }}">
+                                    <div class="content-game">
+
+                                        <input type="hidden" name="id" value="{{ game.id }}">
+                                        <div class="team">
+
+                                            <table class="teamTab">
+                                                <tr>
+                                                    <td class="teamName">
+                                                        {% if game.team1 is not empty %}
+                                                            {{ game.team1.name }}
+                                                        {% endif %}
+                                                    </td>
+                                                    <td class="score">
+
+                                                        {% if game.score1 is empty and game.team2 is not empty %}
+                                                        <input type="number" maxlength="1" name="score1" >
+                                                            {% else %}
+                                                                {{ game.score1 }}
+                                                        {% endif %}
+
+                                                    </td>
+                                                </tr>
+                                            </table>
+
+
+                                        </div>
+                                        <div class="team">
+
+                                            <table class="teamTab">
+                                                <tr>
+
+                                                    <td class="teamName">
+                                                        {% if game.team2 is not empty %}
+                                                            {{ game.team2.name }}
+                                                        {% endif %}
+                                                    </td>
+                                                    <td class="score">
+                                                        {% if game.score2 is empty and game.team2 is not empty %}
+                                                            <input type="number" maxlength="1" name="score2" >
+                                                        {% else %}
+                                                            {{ game.score2 }}
+                                                        {% endif %}
+
+                                                    </td>
+                                                </tr>
+                                            </table>
+
+                                        </div>
+
+
+
+                                    </div>
+                                    <div class="submit">
+                                        {% if game.team1 is not empty and game.team2 is not empty and game.score1 is empty %}
+                                        <input type="submit" value="ok">
+                                        {% endif %}
+                                    </div>
+                                    </form>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </td>
+                {% endfor %}
+            </tr>
+        </table>
+    </div>
+
+{% endblock %}

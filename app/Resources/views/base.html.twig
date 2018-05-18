@@ -3,11 +3,24 @@
     <head>
         <meta charset="UTF-8" />
         <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="stylesheet" type="text/css" href="{{ asset('build/style.css') }}">
         {% block stylesheets %}{% endblock %}
+        <link rel="stylesheet" type="text/css" href="{{ asset('build/style.css') }}">
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <link href="https://fonts.googleapis.com/css?family=Catamaran:400,600" rel="stylesheet">
     </head>
-    <body>
+    <body class="container-fluid">
+        {% include 'default/include/navbar.html.twig' %}
+        {% include 'default/main/header.html.twig' %}
+
         {% block body %}{% endblock %}
+
+        {% include 'default/include/footer.html.twig' %}
+
+        <script src="{{ asset('build/manifest.js') }}"></script>
+        <script src="{{ asset('build/app.js') }}"></script>
+        <script src="{{ asset('build/countdown.js') }}"></script>
         {% block javascripts %}{% endblock %}
+    <!--<script language="JavaScript" src="http://scripts.hashemian.com/js/countdown.js"></script>-->
     </body>
 </html>
