@@ -197,5 +197,23 @@ $heightCell : 80px;
       }
     }
   }
+}
 
+
+
+footer {
+  min-height: 250px;
+
+  .logos {
+    img{
+      max-height: 40px;
+      max-width: 40px;
+    }
+  }
+  .logo-ball{
+    img{
+      max-height: 80px;
+      max-width: 80px;
+    }
+  }
 }

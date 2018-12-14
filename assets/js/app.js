@@ -2,7 +2,7 @@
 require('../scss/main.scss');
 
 // CountDown
-let countDownDate = new Date("August 8, 2018 15:37:25").getTime();
+let countDownDate = new Date("August 8, 2050 15:37:25").getTime();
 let x = setInterval(function() {
 
     // Get todays date and time
