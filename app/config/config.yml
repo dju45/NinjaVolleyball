@@ -82,3 +82,18 @@ fos_user:
     registration:
         form:
             type: AppBundle\Form\RegistrationType
+
+easy_admin:
+    design:
+        color_scheme: 'light'
+    entities:
+        Pool:
+            class: AppBundle\Entity\Pool
+        Team:
+            class: AppBundle\Entity\Team
+            form:
+                fields:
+                    - 'name'
+                    -  { property: 'country', type: 'country'}
+
+

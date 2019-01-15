@@ -180,7 +180,7 @@ class GeneratorController extends Controller
                 }
     }
 
-    private function generateSecondCol($games)
+    private function generateSecondCol($games): void
     {
        $tournamentController = new TournamentController();
        $firstCol = $tournamentController->seekFirstCol($games);

@@ -1,6 +1,5 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-    <h1>{{ constant('AppBundle\\Entity\\Tournament::TOURNAMENT') }}</h1>
 
     {% if games is empty %}
         <a href="{{ path('admin_generator') }}">Générer le tournoi</a>

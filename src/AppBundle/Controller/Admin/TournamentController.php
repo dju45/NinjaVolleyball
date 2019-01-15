@@ -51,18 +51,21 @@ class TournamentController extends Controller
     }
 
     /**
-     * @param $game
+     *
      * @Route("/update",name="admin_update_tournament")
      * @Method({"POST","GET"})
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function updateTournament(Request $request)
     {
+        /**@var $game Game**/
 
         $id = $request->request->get("id", "0");
         $score1 = $request->request->get("score1", "0");
         $score2 = $request->request->get("score2", "0");
 
-        if ($score1 == $score2) {
+        if ($score1 === $score2) {
             return $this->redirectToRoute('admin_tournament_index');
         }
 
@@ -75,7 +78,7 @@ class TournamentController extends Controller
 
         // winner
         $isPair= false;
-        if ($game->getPosLine() % 2 != 0) {
+        if ($game->getPosLine() % 2 !== 0) {
             $posLineCible = ceil($game->getPosLine() / 2);
 
         }
@@ -97,9 +100,10 @@ class TournamentController extends Controller
         ;
 
         $gameCible = $query->getResult();
+        dump($gameCible);
         $gameCible = $gameCible[0];
-        var_dump($gameCible);
-        var_dump($game);
+
+//        var_dump($game);
 
         if ($score1 > $score2) {
             $winner = 1;
@@ -118,6 +122,7 @@ class TournamentController extends Controller
             }
 
         }
+
         // ajouter les autres games
         $em->persist($gameCible);
         $em->flush();
