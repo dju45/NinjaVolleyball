@@ -5,7 +5,7 @@ Ninja Volleyball was a team project for the second Wild Code School hackathon, w
 
 > Our goal was to create a site for an international sports federation.
 
-**The project is built with Symfony 3.4, PHP, Bootstrap 4, HTML, CSS, Javascript, .**  
+**The project is built with Symfony 3.4, PHP, Bootstrap 4, HTML, CSS, Javascript .**  
 
 *Disclaimer: this project has no commercial purpose.*
 
